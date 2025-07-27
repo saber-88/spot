@@ -20,7 +20,7 @@
 #### 🂨 Clone the Repository
 
 ```bash
-git clone https://github.com/saber-88/spot.git
+git clone https://github.com/saber-88/spot.git ~/spot
 cd spot
 ```
 
@@ -57,7 +57,7 @@ spot [OPTIONS] <PATTERN> <FILENAME>
 
 | Flag                  | Description                                                             |
 |-----------------------|-------------------------------------------------------------------------|
-| `-i`, `--ignore-case` | Match pattern ignoring case                                             |
+| `-i`, `--ignore-case` | Highlight first occurrence of pattern in a line ignoring case                                             |
 | `-a`, `--all`         | Highlight **all** occurrences of the pattern in each line               |
 | `-c`, `--count`       | Display the **total number of matches** instead of matching lines       |
 | `-h`, `--help`        | Show help message and exit                                              |
