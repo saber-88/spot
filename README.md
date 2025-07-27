@@ -15,19 +15,35 @@
 
 ---
 
-## 🚀 Installation
+### 📦 Installation
 
-You can build the binary using `gcc`:
-
-```bash
-gcc spot.c -o spot
-```
-
-Make it globally available by moving it to a location in your `PATH`:
+#### 🂨 Clone the Repository
 
 ```bash
-sudo mv spot /usr/local/bin
+git clone https://github.com/saber-88/spot.git
+cd spot
 ```
+
+#### ⚙️ Run the Setup Script
+
+```bash
+./setup.sh
+```
+
+This script will:
+
+* Compile the `spot.c` file using `make`
+* Move the resulting binary to `/usr/local/bin`
+* Make `spot` globally accessible from your terminal
+
+You may be asked to enter your password because moving files to `/usr/local/bin` requires root privileges.
+
+> ✅ After installation, you can use the tool from anywhere by simply running:
+
+```bash
+spot <PATTERN> <FILENAME>
+```
+
 
 ---
 
