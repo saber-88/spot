@@ -6,13 +6,17 @@
 
 int main(int argc, char *argv[]) {
 
-  if (argc < 3) {
+  if (argc < 2) {
     printf("\nUsage : %s [OPTIONS] <PATTERN> <FILENAME>\n\n", argv[0]);
     printf("    Options : \n\n");
-    printf("        -i or --ignore-case         : Highlight first occurrence of pattern in a line ignoring case \n");
-    printf("        -a or --all                 : Highlight all occurrences of the pattern in a line\n");
-    printf("        -h or --help                : To dislplay this help message\n");
-    printf("        -c or --count               : To dislplay number of time pattern is occured throught the file \n");
+    printf("        -i or --ignore-case         : Highlight first occurrence "
+           "of pattern in a line ignoring case \n");
+    printf("        -a or --all                 : Highlight all occurrences of "
+           "the pattern in a line\n");
+    printf("        -h or --help                : To dislplay this help "
+           "message\n");
+    printf("        -c or --count               : To dislplay number of time "
+           "pattern is occured throught the file \n");
     return 1;
   }
 
@@ -20,7 +24,7 @@ int main(int argc, char *argv[]) {
   int help = 0;
   int caseInsestive = 0;
   int countOnly = 0;
-  int invalid_args =0;
+  int invalid_args = 0;
 
   char *pattern = NULL;
   char *filename = NULL;
@@ -50,34 +54,47 @@ int main(int argc, char *argv[]) {
     else if (filename == NULL) {
       filename = argv[i];
     } else {
-      invalid_args =1;
+      invalid_args = 1;
       printf("Invalid arguments\n");
     }
   }
 
-  if (help || !pattern || !filename || invalid_args) {
+  if (help || !pattern || invalid_args) {
     printf("\nUsage : %s [OPTIONS] <PATTERN> <FILENAME>\n\n", argv[0]);
     printf("    Options : \n\n");
-    printf("        -i or --ignore-case         : Highlight first occurrence of pattern in a line ignoring case \n");
-    printf("        -a or --all                 : Highlight all occurrences of the pattern in a line\n");
-    printf("        -h or --help                : To dislplay this help message\n");
-    printf("        -c or --count               : To dislplay number of time pattern is occured throught the file \n");
+    printf("        -i or --ignore-case         : Highlight first occurrence "
+           "of pattern in a line ignoring case \n");
+    printf("        -a or --all                 : Highlight all occurrences of "
+           "the pattern in a line\n");
+    printf("        -h or --help                : To dislplay this help "
+           "message\n");
+    printf("        -c or --count               : To dislplay number of time "
+           "pattern is occured throught the file \n");
     return 1;
   }
 
-  char buffer[1024];  // creating a buffer to store the line of 1024 bytes from target file.
+  char buffer[1024];   // creating a buffer to store the line of 1024 bytes from
+                       // target file.
   int line_number = 0; // to keep track of line number.
 
-  FILE *fp = fopen(filename, "r"); // opening the file which is pointed by filename pointer in read mode.
+  FILE *fp; //
+
+  if (filename == NULL) {
+    fp = stdin;
+  } else {
+    fp = fopen(filename, "r");
+  }
 
   if (fp == NULL) {
     printf("Error ! Can't Open File..\n");
     return 1;
   }
 
-  int total_matches = 0; // for keeping track of count of how many time pattern occurs in file.
+  int total_matches =
+      0; // for keeping track of count of how many time pattern occurs in file.
 
-  if (countOnly) {     // if count flag is parsed in argument then this block will run.
+  if (countOnly) { // if count flag is parsed in argument then this block will
+                   // run.
     while (fgets(buffer, sizeof(buffer), fp) != NULL) {
       char *line = buffer;
       while (1) {
@@ -87,7 +104,10 @@ int main(int argc, char *argv[]) {
           break;
         }
         total_matches++;
-        line = match + strlen(pattern); // The line will point to next word after the pattern.
+        line =
+            match +
+            strlen(
+                pattern); // The line will point to next word after the pattern.
       }
     }
     printf("%d\n", total_matches);
@@ -109,16 +129,21 @@ int main(int argc, char *argv[]) {
           break;
         }
 
-        if (first_match) { 
+        if (first_match) {
           printf("\033[0;31m%d\033[0m : ", line_number);
         }
 
-        printf("%.*s", (int)(match - line), line); // prints text before the pattern in normal colors.
-        printf("\033[0;31m%s\033[0m", pattern); // prints pattern in hihghlighted color.
-        line = match + strlen(pattern); // moves pointer to the next char after the pattern.
+        printf("%.*s", (int)(match - line),
+               line); // prints text before the pattern in normal colors.
+        printf("\033[0;31m%s\033[0m",
+               pattern); // prints pattern in hihghlighted color.
+        line =
+            match +
+            strlen(
+                pattern); // moves pointer to the next char after the pattern.
         first_match = 0;
 
-        if (!highlightAll) { // checks if --all flag is disabled. 
+        if (!highlightAll) { // checks if --all flag is disabled.
           break;
         }
       } // end of inner loop
@@ -126,8 +151,8 @@ int main(int argc, char *argv[]) {
       if (!first_match) {
         printf("%s", line);
       }
-      
-    }// end of outer loop
+
+    } // end of outer loop
 
   } // end of if - else block
 
