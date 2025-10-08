@@ -86,7 +86,7 @@ spot -c hello file.txt
 ### Combined example
 
 ```bash
-spot -i -a -c hello file.txt
+spot -i -c hello file.txt
 ```
 
 ---
@@ -121,4 +121,5 @@ This project is licensed under the **MIT License** – see the [LICENSE](LICENSE
 ## 👤 Author
 
 Developed by [Karmveer](https://github.com/saber-88)
+
 
