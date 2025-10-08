@@ -60,7 +60,7 @@ spot [OPTIONS] <PATTERN> <FILENAME>
 | `-i`, `--ignore-case` | Highlight all occurrences of pattern in a file ignoring case            |
 | `-c`, `--count`       | Display the **total number of matches** instead of matching lines       |
 | `-h`, `--help`        | Show help message and exit                                              |
-|_________________________________________________________________________________________________|
+
 ---
 
 ## 📂 Examples
@@ -121,3 +121,4 @@ This project is licensed under the **MIT License** – see the [LICENSE](LICENSE
 ## 👤 Author
 
 Developed by [Karmveer](https://github.com/saber-88)
+
