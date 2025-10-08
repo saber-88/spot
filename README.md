@@ -57,11 +57,10 @@ spot [OPTIONS] <PATTERN> <FILENAME>
 
 | Flag                  | Description                                                             |
 |-----------------------|-------------------------------------------------------------------------|
-| `-i`, `--ignore-case` | Highlight first occurrence of pattern in a line ignoring case                                             |
-| `-a`, `--all`         | Highlight **all** occurrences of the pattern in each line               |
+| `-i`, `--ignore-case` | Highlight all occurrences of pattern in a file ignoring case            |
 | `-c`, `--count`       | Display the **total number of matches** instead of matching lines       |
 | `-h`, `--help`        | Show help message and exit                                              |
-
+|_________________________________________________________________________________________________|
 ---
 
 ## 📂 Examples
@@ -76,12 +75,6 @@ spot hello file.txt
 
 ```bash
 spot -i Hello file.txt
-```
-
-### Highlight all matches in a line
-
-```bash
-spot -a hello file.txt
 ```
 
 ### Count total occurrences
@@ -101,7 +94,7 @@ spot -i -a -c hello file.txt
 ## 📦 Sample Output
 
 ```bash
-spot -i -a king book.txt
+spot -i king book.txt
 11 : There were a KING with a large jaw and a queen with a plain face...
 12 : there were a KING with a large jaw and a queen with a fair face...
 ```
