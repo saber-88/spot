@@ -9,18 +9,16 @@ int main(int argc, char *argv[]) {
   if (argc < 2) {
     printf("\nUsage : %s [OPTIONS] <PATTERN> <FILENAME>\n\n", argv[0]);
     printf("    Options : \n\n");
-    printf("        -i or --ignore-case         : Highlight first occurrence "
-           "of pattern in a line ignoring case \n");
-    printf("        -a or --all                 : Highlight all occurrences of "
-           "the pattern in a line\n");
+    printf("        -i or --ignore-case         : Highlight all occurrences "
+           "of pattern in a file ignoring case \n");
+    printf("        -c or --count               : To dislplay number of time "
+           "pattern is occured throughout the file \n");
     printf("        -h or --help                : To dislplay this help "
            "message\n");
-    printf("        -c or --count               : To dislplay number of time "
-           "pattern is occured throught the file \n");
+
     return 1;
   }
 
-  int highlightAll = 0;
   int help = 0;
   int caseInsestive = 0;
   int countOnly = 0;
@@ -37,10 +35,6 @@ int main(int argc, char *argv[]) {
 
     else if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
       help = 1;
-    }
-
-    else if (strcmp(argv[i], "-a") == 0 || strcmp(argv[i], "--all") == 0) {
-      highlightAll = 1;
     }
 
     else if (strcmp(argv[i], "-c") == 0 || strcmp(argv[i], "--count") == 0) {
@@ -62,14 +56,13 @@ int main(int argc, char *argv[]) {
   if (help || !pattern || invalid_args) {
     printf("\nUsage : %s [OPTIONS] <PATTERN> <FILENAME>\n\n", argv[0]);
     printf("    Options : \n\n");
-    printf("        -i or --ignore-case         : Highlight first occurrence "
-           "of pattern in a line ignoring case \n");
-    printf("        -a or --all                 : Highlight all occurrences of "
-           "the pattern in a line\n");
+    printf("        -i or --ignore-case         : Highlight all occurrences "
+           "of pattern in a file ignoring case \n");
+    printf("        -c or --count               : To dislplay number of time "
+           "pattern is occured throughout the file \n");
     printf("        -h or --help                : To dislplay this help "
            "message\n");
-    printf("        -c or --count               : To dislplay number of time "
-           "pattern is occured throught the file \n");
+
     return 1;
   }
 
@@ -119,7 +112,6 @@ int main(int argc, char *argv[]) {
 
       line_number++;
       char *line = buffer;
-      char *match;
       int first_match = 1; // for line numbering
 
       while (1) {
@@ -137,15 +129,13 @@ int main(int argc, char *argv[]) {
                line); // prints text before the pattern in normal colors.
         printf("\033[0;31m%s\033[0m",
                pattern); // prints pattern in hihghlighted color.
+
         line =
             match +
             strlen(
                 pattern); // moves pointer to the next char after the pattern.
         first_match = 0;
 
-        if (!highlightAll) { // checks if --all flag is disabled.
-          break;
-        }
       } // end of inner loop
 
       if (!first_match) {
